@@ -63,6 +63,7 @@ class MainActivity : AppCompatActivity() {
             } else {
                 startActivity(home)
             }
+            finish()
         }
     }
 }
