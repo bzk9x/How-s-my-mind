@@ -1,10 +1,13 @@
 package com.howsmymind
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatButton
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.howsmymind.core.auth.BiometricAuth
 
 class EnableBiometricsUnlockPromptActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -15,6 +18,17 @@ class EnableBiometricsUnlockPromptActivity : AppCompatActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+        }
+
+        val home = Intent(this, HomeActivity::class.java)
+        val biometricAuth = BiometricAuth(activity = this, onSuccess = {
+            startActivity(home)
+            finish()
+        }, onFailure = {}, onError = {})
+
+        val enableBiometricsButton = findViewById<AppCompatButton>(R.id.enable_biometrics_button)
+        enableBiometricsButton.setOnClickListener {
+            biometricAuth.show()
         }
     }
 }
