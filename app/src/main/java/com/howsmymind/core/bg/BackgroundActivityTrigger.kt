@@ -11,7 +11,7 @@ import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ProcessLifecycleOwner
 import androidx.core.content.edit
-import com.howsmymind.UnlockWithBiometricsActivity
+import com.howsmymind.activities.UnlockWithBiometricsActivity
 
 object BackgroundActivityTrigger : DefaultLifecycleObserver {
 

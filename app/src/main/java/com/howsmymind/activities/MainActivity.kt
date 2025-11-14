@@ -1,4 +1,4 @@
-package com.howsmymind
+package com.howsmymind.activities
 
 import android.content.Intent
 import android.os.Build
@@ -8,9 +8,10 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 import androidx.biometric.BiometricManager
+import androidx.core.content.edit
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.core.content.edit
+import com.howsmymind.R
 
 class MainActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.Q)
@@ -24,7 +25,8 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        val enableBiometricsUnlockPrompt = Intent(this, EnableBiometricsUnlockPromptActivity::class.java)
+        val enableBiometricsUnlockPrompt =
+            Intent(this, EnableBiometricsUnlockPromptActivity::class.java)
         val home = Intent(this, HomeActivity::class.java)
         val unlockWithBiometrics = Intent(this, UnlockWithBiometricsActivity::class.java)
         val sharedPref = getSharedPreferences("prefs", MODE_PRIVATE)
