@@ -21,23 +21,28 @@ class MainActivity : AppCompatActivity() {
         }
 
         val enableBiometricsUnlockPrompt = Intent(this, EnableBiometricsUnlockPromptActivity::class.java)
+        val home = Intent(this, HomeActivity::class.java)
 
         val continueButton = findViewById<AppCompatButton>(R.id.continue_button)
 
         continueButton.setOnClickListener {
-            startActivity(enableBiometricsUnlockPrompt)
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
-                overrideActivityTransition(
-                    OVERRIDE_TRANSITION_OPEN,
-                    R.anim.slide_in_right,
-                    R.anim.slide_out_left
-                )
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                startActivity(enableBiometricsUnlockPrompt)
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+                    overrideActivityTransition(
+                        OVERRIDE_TRANSITION_OPEN,
+                        R.anim.slide_in_right,
+                        R.anim.slide_out_left
+                    )
+                } else {
+                    @Suppress("DEPRECATION")
+                    overridePendingTransition(
+                        R.anim.slide_in_right,
+                        R.anim.slide_out_left
+                    )
+                }
             } else {
-                @Suppress("DEPRECATION")
-                overridePendingTransition(
-                    R.anim.slide_in_right,
-                    R.anim.slide_out_left
-                )
+                startActivity(home)
             }
             finish()
         }
