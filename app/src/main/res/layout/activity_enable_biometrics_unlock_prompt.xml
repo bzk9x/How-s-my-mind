@@ -61,7 +61,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        android:fontFamily="@font/hanken_grotesk_bold"
+        android:fontFamily="@font/hanken_grotesk_medium"
         android:alpha="0.75"
         android:padding="15dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
