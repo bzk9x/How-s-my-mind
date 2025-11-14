@@ -8,6 +8,7 @@ import androidx.appcompat.widget.AppCompatButton
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.howsmymind.core.auth.BiometricAuth
+import com.howsmymind.core.haptics.ErrorRumble
 
 class EnableBiometricsUnlockPromptActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,10 +22,13 @@ class EnableBiometricsUnlockPromptActivity : AppCompatActivity() {
         }
 
         val home = Intent(this, HomeActivity::class.java)
+        val errorRumble = ErrorRumble(this)
         val biometricAuth = BiometricAuth(activity = this, onSuccess = {
             startActivity(home)
             finish()
-        }, onFailure = {}, onError = {})
+        }, onFailure = {}, onError = {
+            errorRumble.trigger()
+        })
 
         val enableBiometricsButton = findViewById<AppCompatButton>(R.id.enable_biometrics_button)
         enableBiometricsButton.setOnClickListener {
