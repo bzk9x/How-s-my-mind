@@ -24,16 +24,16 @@
     <androidx.appcompat.widget.AppCompatButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/button"
+        android:fontFamily="@font/hanken_grotesk_bold"
+        android:paddingHorizontal="90dp"
+        android:paddingVertical="20dp"
         android:text="@string/continue_text"
+        android:textAllCaps="false"
+        android:textColor="?attr/colorOnPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginBottom="30dp"
-        android:paddingHorizontal="90dp"
-        android:paddingVertical="20dp"
-        android:textColor="?attr/colorOnPrimary"
-        android:background="@drawable/button"
-        android:textAllCaps="false"
-        android:fontFamily="@font/hanken_grotesk_medium"/>
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
