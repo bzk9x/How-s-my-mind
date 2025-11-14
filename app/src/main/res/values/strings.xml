@@ -2,4 +2,8 @@
     <string name="app_name">How\'s my mind</string>
     <string name="how_s_your_mind">How\'s your mind?</string>
     <string name="continue_text">Continue</string>
+    <string name="unlock_with_your_fingerprint_or_face">Unlock with your fingerprint\nor face?</string>
+    <string name="turn_on_biometrics_to_keep_your_check_ins_private">Turn on biometrics to keep\nyour check ins private</string>
+    <string name="enable">Enable</string>
+    <string name="skip_for_now">Skip for now</string>
 </resources>
