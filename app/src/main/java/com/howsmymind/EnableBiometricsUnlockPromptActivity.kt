@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
+import androidx.core.content.edit
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.howsmymind.core.auth.BiometricAuth
@@ -23,7 +24,9 @@ class EnableBiometricsUnlockPromptActivity : AppCompatActivity() {
 
         val home = Intent(this, HomeActivity::class.java)
         val errorRumble = ErrorRumble(this)
+        val sharedPref = getSharedPreferences("prefs", MODE_PRIVATE)
         val biometricAuth = BiometricAuth(activity = this, onSuccess = {
+            sharedPref.edit { putBoolean("useBiometricsUnlock", true) }
             startActivity(home)
             finish()
         }, onFailure = {}, onError = {

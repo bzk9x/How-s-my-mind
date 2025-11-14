@@ -9,6 +9,7 @@ import androidx.appcompat.widget.AppCompatButton
 import androidx.biometric.BiometricManager
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.content.edit
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,10 +24,16 @@ class MainActivity : AppCompatActivity() {
 
         val enableBiometricsUnlockPrompt = Intent(this, EnableBiometricsUnlockPromptActivity::class.java)
         val home = Intent(this, HomeActivity::class.java)
+        val unlockWithBiometrics = Intent(this, UnlockWithBiometricsActivity::class.java)
+        val sharedPref = getSharedPreferences("prefs", MODE_PRIVATE)
+        val isFirstOpen = sharedPref.getBoolean("isFirstOpen", true)
+        val useBiometricsUnlock = sharedPref.getBoolean("useBiometricsUnlock", false)
 
         val continueButton = findViewById<AppCompatButton>(R.id.continue_button)
 
         continueButton.setOnClickListener {
+            sharedPref.edit { putBoolean("isFirstOpen", false) }
+
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P && BiometricManager.from(this).canAuthenticate(
                     BiometricManager.Authenticators.BIOMETRIC_STRONG) == BiometricManager.BIOMETRIC_SUCCESS
             ) {
@@ -48,6 +55,14 @@ class MainActivity : AppCompatActivity() {
                 startActivity(home)
             }
             finish()
+        }
+
+        if (!isFirstOpen) {
+            if (useBiometricsUnlock) {
+                startActivity(unlockWithBiometrics)
+            } else {
+                startActivity(home)
+            }
         }
     }
 }
