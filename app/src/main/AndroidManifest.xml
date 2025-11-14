@@ -11,6 +11,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HowsmyMind">
         <activity
+            android:name=".EnableBiometricsUnlockPromptActivity"
+            android:exported="false" />
+        <activity
             android:name=".HomeActivity"
             android:exported="false" />
         <activity
