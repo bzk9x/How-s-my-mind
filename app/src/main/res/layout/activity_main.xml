@@ -34,5 +34,6 @@
         android:paddingVertical="20dp"
         android:textColor="?attr/colorOnPrimary"
         android:background="@drawable/button"
-        android:textAllCaps="false"/>
+        android:textAllCaps="false"
+        android:fontFamily="@font/hanken_grotesk_medium"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
