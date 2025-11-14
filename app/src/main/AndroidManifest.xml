@@ -14,7 +14,8 @@
         android:theme="@style/Theme.HowsmyMind">
         <activity
             android:name=".UnlockWithBiometricsActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:launchMode="singleTop"/>
         <activity
             android:name=".EnableBiometricsUnlockPromptActivity"
             android:exported="false" />

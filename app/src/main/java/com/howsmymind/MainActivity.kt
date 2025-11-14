@@ -4,14 +4,17 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 import androidx.biometric.BiometricManager
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.content.edit
+import com.howsmymind.core.bg.BackgroundActivityTrigger
 
 class MainActivity : AppCompatActivity() {
+    @RequiresApi(Build.VERSION_CODES.Q)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -34,7 +37,7 @@ class MainActivity : AppCompatActivity() {
         continueButton.setOnClickListener {
             sharedPref.edit { putBoolean("isFirstOpen", false) }
 
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P && BiometricManager.from(this).canAuthenticate(
+            if (BiometricManager.from(this).canAuthenticate(
                     BiometricManager.Authenticators.BIOMETRIC_STRONG) == BiometricManager.BIOMETRIC_SUCCESS
             ) {
                 startActivity(enableBiometricsUnlockPrompt)
@@ -60,6 +63,7 @@ class MainActivity : AppCompatActivity() {
         if (!isFirstOpen) {
             if (useBiometricsUnlock) {
                 startActivity(unlockWithBiometrics)
+                BackgroundActivityTrigger.init(this)
             } else {
                 startActivity(home)
             }
