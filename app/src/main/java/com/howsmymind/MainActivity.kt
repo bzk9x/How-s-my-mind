@@ -11,7 +11,6 @@ import androidx.biometric.BiometricManager
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.content.edit
-import com.howsmymind.core.bg.BackgroundActivityTrigger
 
 class MainActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.Q)
@@ -63,7 +62,6 @@ class MainActivity : AppCompatActivity() {
         if (!isFirstOpen) {
             if (useBiometricsUnlock) {
                 startActivity(unlockWithBiometrics)
-                BackgroundActivityTrigger.init(this)
             } else {
                 startActivity(home)
             }
